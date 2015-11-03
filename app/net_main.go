@@ -5,6 +5,31 @@ import (
 )
 
 func Main_go() {
+	// 重要go协程加入这个玩意, 防止崩溃
+	// 出自 : http://www.open-open.com/lib/view/open1422970537748.html
+	// defer func() {
+	// 	if err := recover(); err != nil {
+	// 		var st = func(all bool) string {
+	// 			// Reserve 1K buffer at first
+	// 			buf := make([]byte, 512)
+
+	// 			for {
+	// 				size := runtime.Stack(buf, all)
+	// 				// The size of the buffer may be not enough to hold the stacktrace,
+	// 				// so double the buffer size
+	// 				if size == len(buf) {
+	// 					buf = make([]byte, len(buf)<<1)
+	// 					continue
+	// 				}
+	// 				break
+	// 			}
+
+	// 			return string(buf)
+	// 		}
+	// 		lib.Log4e("panic:" + toString(err) + "\nstack:" + st(false))
+	// 	}
+	// }()
+
 	RegMsgProc()
 
 	//go GetApp().Listen("main_listen", "tcp", ":8001", OnListenRet)
